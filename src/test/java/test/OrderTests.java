@@ -47,7 +47,7 @@ public class OrderTests extends BaseTest{
     RentDetailsPage rentDetailsPage = new RentDetailsPage(driver);
     rentDetailsPage.fillRentDetails(rentDuration, color , comment);
     rentDetailsPage.pressConfirmOrderButton();
-    rentDetailsPage.orderIsSuccessfulDiplayed();
+    rentDetailsPage.orderIsSuccessfulDisplayed();
   }
 
   @Test
@@ -60,7 +60,7 @@ public class OrderTests extends BaseTest{
     RentDetailsPage rentDetailsPage = new RentDetailsPage(driver);
     rentDetailsPage.fillRentDetails(rentDuration, color , comment);
     rentDetailsPage.pressConfirmOrderButton();
-    rentDetailsPage.orderIsSuccessfulDiplayed();
+    rentDetailsPage.orderIsSuccessfulDisplayed();
   }
 
 

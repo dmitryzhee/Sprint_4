@@ -77,7 +77,7 @@ public class RentDetailsPage {
     driver.findElement(confirmOrderButton).click();
   }
 
-  public void orderIsSuccessfulDiplayed () {
+  public void orderIsSuccessfulDisplayed() {
     driver.findElement(orderIsSuccessful).isDisplayed();
   }
 
