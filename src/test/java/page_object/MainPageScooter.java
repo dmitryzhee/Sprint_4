@@ -23,11 +23,11 @@ public class MainPageScooter {
     private By bottomOrderButton = By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button[text()='Заказать']");
 
 
-
+    //Вопросы в разделе "Вопросы о важном"
     private By [] questionLocators = new By[] {By.id("accordion__heading-0"), By.id("accordion__heading-1"), By.id("accordion__heading-2"),
             By.id("accordion__heading-3"), By.id("accordion__heading-4"), By.id("accordion__heading-5"), By.id("accordion__heading-6"),
             By.id("accordion__heading-7")};
-
+    //Ответы в разделе "Вопросы о важном"
     private By [] answerLocators = new By[] {By.xpath(".//div[@id='accordion__panel-0']/p"),  By.xpath(".//div[@id='accordion__panel-1']/p"),
             By.xpath(".//div[@id='accordion__panel-2']/p"), By.xpath(".//div[@id='accordion__panel-3']/p"),
             By.xpath(".//div[@id='accordion__panel-4']/p"), By.xpath(".//div[@id='accordion__panel-5']/p"),
