@@ -1,28 +1,20 @@
 package test;
 
-import PageObject.MainPageScooter;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.concurrent.TimeUnit;
+import page_object.MainPageScooter;
 
 
 @RunWith(Parameterized.class)
-public class QuestionListTests {
+public class QuestionListTests extends BaseTest {
 
     private By questionLocator;
     private By answerLocator;
     private String expectedAnswer;
-
-    private WebDriver driver;
 
     public QuestionListTests (By questionLocator, By answerLocator,  String expectedAnswer) {
         this.questionLocator = questionLocator;
@@ -32,32 +24,26 @@ public class QuestionListTests {
 
     @Parameterized.Parameters
     public static Object [][] getQuestionData() {
+        MainPageScooter mainPageScooter = new MainPageScooter(driver);
         return new Object [][] {
-                {By.id("accordion__heading-0"), By.xpath(".//div[@id='accordion__panel-0']/p"),
+                {mainPageScooter.getQuestionLocator(0), mainPageScooter.getAnswerLocator(0),
                         "Сутки — 400 рублей. Оплата курьеру — наличными или картой."},
-                {By.id("accordion__heading-1"), By.xpath(".//div[@id='accordion__panel-1']/p"),
+                {mainPageScooter.getQuestionLocator(1), mainPageScooter.getAnswerLocator(1),
                         "Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим."},
-                {By.id("accordion__heading-2"), By.xpath(".//div[@id='accordion__panel-2']/p"),
+                {mainPageScooter.getQuestionLocator(2), mainPageScooter.getAnswerLocator(2),
                         "Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30."},
-                {By.id("accordion__heading-3"), By.xpath(".//div[@id='accordion__panel-3']/p"),
+                {mainPageScooter.getQuestionLocator(3), mainPageScooter.getAnswerLocator(3),
                         "Только начиная с завтрашнего дня. Но скоро станем расторопнее."},
-                {By.id("accordion__heading-4"), By.xpath(".//div[@id='accordion__panel-4']/p"),
+                {mainPageScooter.getQuestionLocator(4), mainPageScooter.getAnswerLocator(4),
                         "Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010."},
-                {By.id("accordion__heading-5"), By.xpath(".//div[@id='accordion__panel-5']/p"),
+                {mainPageScooter.getQuestionLocator(5), mainPageScooter.getAnswerLocator(5),
                         "Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься без передышек и во сне. Зарядка не понадобится."},
-                {By.id("accordion__heading-6"), By.xpath(".//div[@id='accordion__panel-6']/p"),
+                {mainPageScooter.getQuestionLocator(6), mainPageScooter.getAnswerLocator(6),
                         "Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои."},
-                {By.id("accordion__heading-7"), By.xpath(".//div[@id='accordion__panel-7']/p"),
+                {mainPageScooter.getQuestionLocator(7), mainPageScooter.getAnswerLocator(7),
                         "Да, обязательно. Всем самокатов! И Москве, и Московской области."},
 
         };
-    }
-
-    @Before
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.get("https://qa-scooter.praktikum-services.ru/");
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     @Test
@@ -66,9 +52,5 @@ public class QuestionListTests {
         WebElement element = driver.findElement(questionLocator);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
         mainPageScooter.shouldBeCorrectAnswer(questionLocator, answerLocator, expectedAnswer);
-    }
-    @After
-    public void tearDown() {
-        driver.quit();
     }
 }

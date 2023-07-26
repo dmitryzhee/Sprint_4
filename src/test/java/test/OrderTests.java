@@ -1,24 +1,14 @@
 package test;
 
-import PageObject.MainPageScooter;
-import PageObject.CustomerDetailsPage;
-import PageObject.RentDetailsPage;
-import org.junit.After;
-import org.junit.Before;
+import page_object.MainPageScooter;
+import page_object.CustomerDetailsPage;
+import page_object.RentDetailsPage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
-import java.util.concurrent.TimeUnit;
 
 @RunWith(Parameterized.class)
-public class OrderTests {
-
-  private WebDriver driver;
+public class OrderTests extends BaseTest{
 
   private String name;
   private String surname;
@@ -47,15 +37,8 @@ public class OrderTests {
     };
   }
 
-  @Before
-  public void setUp() {
-    driver = new ChromeDriver();
-    driver.get("https://qa-scooter.praktikum-services.ru/");
-    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-  }
-
   @Test
-  public void makeOrder_success_topOrderButton() {
+  public void makeOrderSuccessTopOrderButton() {
     MainPageScooter mainPageScooter = new MainPageScooter(driver);
     mainPageScooter.clickTopOrderButton();
     CustomerDetailsPage customerDetailsPage = new CustomerDetailsPage(driver);
@@ -68,7 +51,7 @@ public class OrderTests {
   }
 
   @Test
-  public void makeOrder_success_bottomOrderButton() {
+  public void makeOrderSuccessBottomOrderButton() {
     MainPageScooter mainPageScooter = new MainPageScooter(driver);
     mainPageScooter.clickBottomOrderButton();
     CustomerDetailsPage customerDetailsPage = new CustomerDetailsPage(driver);
@@ -81,10 +64,5 @@ public class OrderTests {
   }
 
 
-
-  @After
-  public void tearDown() {
-    driver.quit();
-  }
 }
 

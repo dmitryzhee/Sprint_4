@@ -1,10 +1,12 @@
-package PageObject;
+package page_object;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainPageScooter {
 
@@ -21,6 +23,23 @@ public class MainPageScooter {
     private By bottomOrderButton = By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button[text()='Заказать']");
 
 
+
+    private By [] questionLocators = new By[] {By.id("accordion__heading-0"), By.id("accordion__heading-1"), By.id("accordion__heading-2"),
+            By.id("accordion__heading-3"), By.id("accordion__heading-4"), By.id("accordion__heading-5"), By.id("accordion__heading-6"),
+            By.id("accordion__heading-7")};
+
+    private By [] answerLocators = new By[] {By.xpath(".//div[@id='accordion__panel-0']/p"),  By.xpath(".//div[@id='accordion__panel-1']/p"),
+            By.xpath(".//div[@id='accordion__panel-2']/p"), By.xpath(".//div[@id='accordion__panel-3']/p"),
+            By.xpath(".//div[@id='accordion__panel-4']/p"), By.xpath(".//div[@id='accordion__panel-5']/p"),
+            By.xpath(".//div[@id='accordion__panel-6']/p"), By.xpath(".//div[@id='accordion__panel-7']/p")};
+
+
+    public By getAnswerLocator(int i ) {
+        return answerLocators[i];
+    }
+    public By getQuestionLocator(int i) {
+        return questionLocators[i];
+    }
 
     public void clickTopOrderButton() {
         driver.findElement(topOrderButton).click();

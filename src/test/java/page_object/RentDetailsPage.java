@@ -1,4 +1,4 @@
-package PageObject;
+package page_object;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -56,9 +56,9 @@ public class RentDetailsPage {
 
   public void selectColor (String color) {
 
-    if (color == "black") {
+    if (color.equals("black")) {
       driver.findElement(colorBlack).click();
-    } else if (color == "grey") {
+    } else if (color.equals("grey")) {
       driver.findElement(colorGrey).click();
     }
 
